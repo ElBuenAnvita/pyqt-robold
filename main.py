@@ -2,17 +2,16 @@ import sys
 import serial
 import serial.tools.list_ports
 from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                             QHBoxLayout, QPushButton, QComboBox, QLabel, QLineEdit)
+                             QHBoxLayout, QPushButton, QComboBox, QLabel, QLineEdit, QSlider)
 from PyQt6.QtCore import Qt
 
 class BrazoRoboticoGUI(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Control Brazo 6DOF - TinyBee")
-        self.setFixedSize(450, 400) # Ventana un poco más grande
+        self.setFixedSize(450, 480) # Ventana un poco más alta para los nuevos controles
         self.serial_port = None
         
-        # Diccionario para guardar las referencias a las cajas de texto de cada motor
         self.inputs = {}
         
         # --- INTERFAZ ---
@@ -35,24 +34,47 @@ class BrazoRoboticoGUI(QMainWindow):
         layout_principal.addLayout(layout_conexion)
         
         # 2. Creación dinámica de los controles para los 6 ejes
-        # Formato: ('Nombre a mostrar', 'ID interno', 'Valor por defecto')
         ejes = [
-            ("Base (X)", "X", "90"),
-            ("Hombro (Y)", "Y", "90"),
-            ("Codo (Z)", "Z", "90"),
-            ("Muñeca 1 (T)", "T", "90"),
-            ("Muñeca 2 (E)", "E", "90"),
-            ("Garra (Servo)", "Servo", "180") # 180 suele ser abierto o cerrado según su ensamble
+            ("Base (T)", "T", "90"),
+            ("Hombro (X)", "X", "90"),
+            ("Codo (Y)", "Y", "90"),
+            ("Muñeca 1 (E)", "E", "90"),
+            ("Muñeca 2 (Z)", "Z", "90"),
+            ("Garra (Servo)", "Servo", "180")
         ]
         
         for nombre, eje_id, val_defecto in ejes:
             layout_principal.addLayout(self.crear_fila_motor(nombre, eje_id, val_defecto))
+            
+        # 3. Control de Velocidad (Slider)
+        layout_velocidad = QHBoxLayout()
+        layout_velocidad.addWidget(QLabel("Velocidad Global:"))
         
-        # 3. Botón de Parada de Emergencia / Detener Servo
+        self.slider_velocidad = QSlider(Qt.Orientation.Horizontal)
+        self.slider_velocidad.setRange(10, 100) # Rango de 10% a 100%
+        self.slider_velocidad.setValue(100) # Inicia al 100%
+        self.slider_velocidad.valueChanged.connect(self.cambiar_velocidad)
+        
+        self.lbl_velocidad_val = QLabel("100%")
+        
+        layout_velocidad.addWidget(self.slider_velocidad)
+        layout_velocidad.addWidget(self.lbl_velocidad_val)
+        layout_principal.addLayout(layout_velocidad)
+        
+        # 4. Botones de Sistema (Límites y Emergencia)
+        layout_sistema = QHBoxLayout()
+        
+        self.btn_fijar_cero = QPushButton("Fijar Cero (Quitar Límites)")
+        self.btn_fijar_cero.setStyleSheet("background-color: #4CAF50; color: white; font-weight: bold; padding: 5px;")
+        self.btn_fijar_cero.clicked.connect(self.fijar_cero_y_limites)
+        
         self.btn_stop = QPushButton("¡Detener Servo (S-1)!")
         self.btn_stop.setStyleSheet("background-color: #ff4c4c; color: white; font-weight: bold; padding: 5px;")
         self.btn_stop.clicked.connect(self.detener_servo)
-        layout_principal.addWidget(self.btn_stop)
+        
+        layout_sistema.addWidget(self.btn_fijar_cero)
+        layout_sistema.addWidget(self.btn_stop)
+        layout_principal.addLayout(layout_sistema)
 
         # Ensamblar todo en la ventana
         widget_central = QWidget()
@@ -61,17 +83,12 @@ class BrazoRoboticoGUI(QMainWindow):
 
     # --- FUNCIONES DE CREACIÓN DE UI ---
     def crear_fila_motor(self, nombre, eje_id, val_defecto):
-        """Crea una fila con el Label, Input y Botón para un eje específico"""
         layout = QHBoxLayout()
         layout.addWidget(QLabel(f"Motor {nombre}:"))
-        
         input_val = QLineEdit(val_defecto)
-        self.inputs[eje_id] = input_val # Guardamos el input en el diccionario usando su ID
-        
+        self.inputs[eje_id] = input_val 
         btn_mover = QPushButton(f"Mover {eje_id}")
-        # La función lambda nos permite pasarle el eje_id a la función genérica cuando se hace clic
         btn_mover.clicked.connect(lambda checked, e=eje_id: self.mover_motor(e))
-        
         layout.addWidget(input_val)
         layout.addWidget(btn_mover)
         return layout
@@ -100,33 +117,27 @@ class BrazoRoboticoGUI(QMainWindow):
             self.btn_conectar.setText("Conectar")
 
     def mover_motor(self, eje_id):
-        """Función genérica que enruta el comando dependiendo del motor"""
         if not (self.serial_port and self.serial_port.is_open):
             print("Error: Puerto serial no conectado.")
             return
         
         try:
             valor = float(self.inputs[eje_id].text())
-            
-            # Caso especial 1: La Garra (Servomotor)
             if eje_id == "Servo":
                 comando = f"M280 P0 S{valor}\n"
                 self.serial_port.write(comando.encode('utf-8'))
                 print(f"Enviado a Garra: {comando.strip()}")
                 return
 
-            # Para los motores paso a paso (X, Y, Z, T, E)
             unidades = valor / 2
-            self.serial_port.write("G91\n".encode('utf-8')) # Movimiento relativo
+            self.serial_port.write("G91\n".encode('utf-8')) 
             
-            # Caso especial 2: Motores de los extrusores
             if eje_id == "T":
                 self.serial_port.write("T0\n".encode('utf-8'))
                 comando = f"G1 E{unidades} F2000\n"
             elif eje_id == "E":
                 self.serial_port.write("T1\n".encode('utf-8'))
                 comando = f"G1 E{unidades} F2000\n"
-            # Caso normal: X, Y, Z
             else:
                 comando = f"G1 {eje_id}{unidades} F2000\n"
             
@@ -136,8 +147,27 @@ class BrazoRoboticoGUI(QMainWindow):
         except ValueError:
             print(f"Error: El valor ingresado para {eje_id} no es un número válido.")
 
+    def fijar_cero_y_limites(self):
+        """Desactiva límites de software y fija la posición actual como 0"""
+        if self.serial_port and self.serial_port.is_open:
+            # 1. Desactivar límites de software
+            self.serial_port.write("M211 S0\n".encode('utf-8'))
+            # 2. Establecer la posición actual como cero para X, Y, Z y Extrusores
+            self.serial_port.write("G92 X0 Y0 Z0 E0\n".encode('utf-8'))
+            print("Límites desactivados (M211 S0) y Posición fijada a Cero (G92).")
+        else:
+            print("Error: Puerto serial no conectado.")
+
+    def cambiar_velocidad(self):
+        """Cambia la velocidad global en tiempo real usando el Slider"""
+        valor = self.slider_velocidad.value()
+        self.lbl_velocidad_val.setText(f"{valor}%")
+        if self.serial_port and self.serial_port.is_open:
+            comando = f"M220 S{valor}\n"
+            self.serial_port.write(comando.encode('utf-8'))
+            print(f"Velocidad global ajustada: {comando.strip()}")
+
     def detener_servo(self):
-        """Comando para cortar energía al servomotor"""
         if self.serial_port and self.serial_port.is_open:
             comando = "M280 P0 S-1\n"
             self.serial_port.write(comando.encode('utf-8'))
