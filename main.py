@@ -1,238 +1,110 @@
 import sys
-import serial
-import serial.tools.list_ports
-from PyQt6.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout, 
-                             QHBoxLayout, QPushButton, QComboBox, QLabel, QLineEdit, QSlider)
-from PyQt6.QtCore import Qt, QTimer
+from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtCore import QTimer
 
-class BrazoRoboticoGUI(QMainWindow):
+# Importamos nuestros módulos recién creados
+from gui_layout import InterfazBrazoUI
+from robot_serial import BrazoRoboticoMarlin
+
+class ControladorPrincipal(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Control Brazo 6DOF - TinyBee")
-        self.setFixedSize(550, 480) # Ventana un poco más ancha para mostrar la posición
-        self.serial_port = None
+        self.setWindowTitle("Control Brazo 6DOF - Robolds")
+        self.setFixedSize(550, 480)
         
-        self.inputs = {}
-        self.labels_posicion = {} # Diccionario para guardar los labels que muestran la posición
+        # 1. Instanciar la Interfaz (Frontend) y el Hardware (Backend)
+        self.ui = InterfazBrazoUI()
+        self.setCentralWidget(self.ui)
+        self.robot = BrazoRoboticoMarlin()
         
-        # --- INTERFAZ ---
-        layout_principal = QVBoxLayout()
-        
-        # 1. Selector de Puertos COM
-        layout_conexion = QHBoxLayout()
-        self.combo_puertos = QComboBox()
-        self.actualizar_puertos()
-        
-        self.btn_conectar = QPushButton("Conectar")
-        self.btn_conectar.clicked.connect(self.conectar_serial)
-        
-        self.lbl_estado = QLabel("Desconectado")
-        self.lbl_estado.setStyleSheet("color: red; font-weight: bold;")
-        
-        layout_conexion.addWidget(self.combo_puertos)
-        layout_conexion.addWidget(self.btn_conectar)
-        layout_conexion.addWidget(self.lbl_estado)
-        layout_principal.addLayout(layout_conexion)
-        
-        # 2. Creación dinámica de los controles para los 6 ejes
-        ejes = [
-            ("Base (T)", "T", "90"),
-            ("Hombro (X)", "X", "90"),
-            ("Codo (Y)", "Y", "90"),
-            ("Muñeca 1 (E)", "E", "90"),
-            ("Muñeca 2 (Z)", "Z", "90"),
-            ("Garra (Servo)", "Servo", "180")
-        ]
-        
-        for nombre, eje_id, val_defecto in ejes:
-            layout_principal.addLayout(self.crear_fila_motor(nombre, eje_id, val_defecto))
-            
-        # 3. Control de Velocidad (Slider) y Botón de Leer Posición
-        layout_velocidad = QHBoxLayout()
-        layout_velocidad.addWidget(QLabel("Velocidad Global:"))
-        
-        self.slider_velocidad = QSlider(Qt.Orientation.Horizontal)
-        self.slider_velocidad.setRange(10, 100) 
-        self.slider_velocidad.setValue(100) 
-        self.slider_velocidad.valueChanged.connect(self.cambiar_velocidad)
-        self.lbl_velocidad_val = QLabel("100%")
-        
-        self.btn_leer_pos = QPushButton("Consultar Posición (M114)")
-        self.btn_leer_pos.setStyleSheet("background-color: #2196F3; color: white; font-weight: bold;")
-        self.btn_leer_pos.clicked.connect(self.solicitar_posicion)
-        
-        layout_velocidad.addWidget(self.slider_velocidad)
-        layout_velocidad.addWidget(self.lbl_velocidad_val)
-        layout_velocidad.addWidget(self.btn_leer_pos)
-        layout_principal.addLayout(layout_velocidad)
-        
-        # 4. Botones de Sistema (Límites y Emergencia)
-        layout_sistema = QHBoxLayout()
-        self.btn_fijar_cero = QPushButton("Fijar Cero (Quitar Límites)")
-        self.btn_fijar_cero.setStyleSheet("background-color: #4CAF50; color: white; font-weight: bold; padding: 5px;")
-        self.btn_fijar_cero.clicked.connect(self.fijar_cero_y_limites)
-        
-        self.btn_stop = QPushButton("¡Detener Servo (S-1)!")
-        self.btn_stop.setStyleSheet("background-color: #ff4c4c; color: white; font-weight: bold; padding: 5px;")
-        self.btn_stop.clicked.connect(self.detener_servo)
-        
-        layout_sistema.addWidget(self.btn_fijar_cero)
-        layout_sistema.addWidget(self.btn_stop)
-        layout_principal.addLayout(layout_sistema)
-
-        # Ensamblar todo en la ventana
-        widget_central = QWidget()
-        widget_central.setLayout(layout_principal)
-        self.setCentralWidget(widget_central)
-
-        # --- TIMER PARA LEER SERIAL EN SEGUNDO PLANO ---
+        # 2. Configurar el Reloj para lectura en segundo plano
         self.timer_serial = QTimer()
-        self.timer_serial.timeout.connect(self.leer_puerto_serial)
-
-    # --- FUNCIONES DE CREACIÓN DE UI ---
-    def crear_fila_motor(self, nombre, eje_id, val_defecto):
-        layout = QHBoxLayout()
-        layout.addWidget(QLabel(f"Motor {nombre}:"))
+        self.timer_serial.timeout.connect(self.rutina_lectura)
         
-        input_val = QLineEdit(val_defecto)
-        input_val.setFixedWidth(50)
-        self.inputs[eje_id] = input_val 
-        
-        btn_mover = QPushButton(f"Mover {eje_id}")
-        btn_mover.clicked.connect(lambda checked, e=eje_id: self.mover_motor(e))
-        
-        # Nuevo Label para mostrar la posición que nos reporta Marlin
-        lbl_pos = QLabel("Pos: 0.0°")
-        lbl_pos.setStyleSheet("color: blue; font-weight: bold;")
-        lbl_pos.setFixedWidth(80)
-        self.labels_posicion[eje_id] = lbl_pos
-        
-        layout.addWidget(input_val)
-        layout.addWidget(btn_mover)
-        layout.addWidget(lbl_pos) # Lo añadimos al final de la fila
-        return layout
+        # 3. Llenar la lista de puertos y conectar eventos
+        self.actualizar_lista_puertos()
+        self.conectar_eventos()
 
-    # --- LÓGICA SERIAL ---
-    def actualizar_puertos(self):
-        puertos = serial.tools.list_ports.comports()
-        self.combo_puertos.clear()
-        for puerto in puertos:
-            self.combo_puertos.addItem(puerto.device)
-
-    def conectar_serial(self):
-        if self.serial_port is None or not self.serial_port.is_open:
-            puerto_seleccionado = self.combo_puertos.currentText()
-            try:
-                self.serial_port = serial.Serial(puerto_seleccionado, 115200, timeout=0.1)
-                self.lbl_estado.setText("Conectado")
-                self.lbl_estado.setStyleSheet("color: green; font-weight: bold;")
-                self.btn_conectar.setText("Desconectar")
-                
-                # Encendemos el reloj invisible para que lea el serial cada 100 milisegundos
-                self.timer_serial.start(100) 
-            except Exception as e:
-                self.lbl_estado.setText(f"Error: {str(e)}")
-        else:
-            self.timer_serial.stop() # Apagamos el reloj
-            self.serial_port.close()
-            self.lbl_estado.setText("Desconectado")
-            self.lbl_estado.setStyleSheet("color: red; font-weight: bold;")
-            self.btn_conectar.setText("Conectar")
-
-    def mover_motor(self, eje_id):
-        if not (self.serial_port and self.serial_port.is_open):
-            return
+    def conectar_eventos(self):
+        """Conecta los clics de la UI con las acciones del Robot"""
+        self.ui.btn_conectar.clicked.connect(self.toggle_conexion)
+        self.ui.btn_leer_pos.clicked.connect(self.robot.solicitar_posicion)
+        self.ui.btn_fijar_cero.clicked.connect(self.robot.fijar_cero_y_limites)
+        self.ui.btn_stop.clicked.connect(self.robot.detener_servo)
         
-        try:
-            valor = float(self.inputs[eje_id].text())
-            if eje_id == "Servo":
-                self.serial_port.write(f"M280 P0 S{valor}\n".encode('utf-8'))
-                return
+        self.ui.slider_velocidad.valueChanged.connect(self.al_cambiar_velocidad)
+        
+        # Conectar cada uno de los botones de Mover Eje
+        for eje_id, btn in self.ui.botones_mover.items():
+            btn.clicked.connect(lambda checked, e=eje_id: self.ejecutar_movimiento(e))
 
-            unidades = valor # / 2
-            self.serial_port.write("G91\n".encode('utf-8')) 
+    def actualizar_lista_puertos(self):
+        puertos = self.robot.obtener_puertos_disponibles()
+        self.ui.combo_puertos.clear()
+        self.ui.combo_puertos.addItems(puertos)
+
+    def toggle_conexion(self):
+        if not self.robot.is_conectado():
+            puerto = self.ui.combo_puertos.currentText()
+            exito, mensaje = self.robot.conectar(puerto)
             
-            if eje_id == "T":
-                self.serial_port.write("T0\n".encode('utf-8'))
-                comando = f"G1 E{unidades} F2000\n"
-            elif eje_id == "E":
-                self.serial_port.write("T1\n".encode('utf-8'))
-                comando = f"G1 E{unidades} F2000\n"
+            if exito:
+                self.ui.lbl_estado.setText("Conectado")
+                self.ui.lbl_estado.setStyleSheet("color: green; font-weight: bold;")
+                self.ui.btn_conectar.setText("Desconectar")
+                self.timer_serial.start(100) # Iniciar lectura de telemetría
             else:
-                comando = f"G1 {eje_id}{unidades} F2000\n"
-            
-            self.serial_port.write(comando.encode('utf-8'))
-            
-            # Pedir a Marlin que nos confirme su nueva posición después de moverse
-            self.solicitar_posicion()
-            
+                self.ui.lbl_estado.setText(f"Error: {mensaje}")
+        else:
+            self.timer_serial.stop()
+            self.robot.desconectar()
+            self.ui.lbl_estado.setText("Desconectado")
+            self.ui.lbl_estado.setStyleSheet("color: red; font-weight: bold;")
+            self.ui.btn_conectar.setText("Conectar")
+
+    def al_cambiar_velocidad(self):
+        valor = self.ui.slider_velocidad.value()
+        self.ui.lbl_velocidad_val.setText(f"{valor}%")
+        self.robot.cambiar_velocidad(valor)
+
+    def ejecutar_movimiento(self, eje_id):
+        try:
+            # Leemos el texto de la UI, lo volvemos número y lo enviamos al Backend
+            texto_ingresado = self.ui.inputs[eje_id].text()
+            grados = float(texto_ingresado)
+            self.robot.mover_eje(eje_id, grados)
         except ValueError:
-            print("Error: Ingrese un número válido.")
+            print("Por favor ingrese un valor numérico válido.")
 
-    def solicitar_posicion(self):
-        """Envía el comando M114 para pedirle a Marlin su ubicación actual"""
-        if self.serial_port and self.serial_port.is_open:
-            self.serial_port.write("M114\n".encode('utf-8'))
-
-    def leer_puerto_serial(self):
-        """Se ejecuta en segundo plano. Si Marlin envía texto, lo lee y lo procesa."""
-        if self.serial_port and self.serial_port.is_open:
-            if self.serial_port.in_waiting > 0:
-                respuesta = self.serial_port.readline().decode('utf-8', errors='ignore').strip()
-                
-                # Filtro de limpieza: Ignoramos el spam de "wait" y los acuses de recibo "ok" simples
-                if respuesta == "wait" or respuesta.startswith("ok"):
-                    return
-                    
-                print(f"Marlin dice: {respuesta}")
-                
-                if "X:" in respuesta and "Count" in respuesta:
-                    self.procesar_coordenadas(respuesta)
+    def rutina_lectura(self):
+        """Revisa constantemente si el robot nos envió coordenadas"""
+        respuesta = self.robot.leer_datos()
+        if respuesta:
+            print(f"Marlin dice: {respuesta}")
+            if "X:" in respuesta and "Count" in respuesta:
+                self.procesar_coordenadas(respuesta)
 
     def procesar_coordenadas(self, texto):
-        """Extrae los números del texto de Marlin y los convierte a grados reales"""
-        # texto llega así: "X:180.00 Y:0.00 Z:0.00 E:0.00 Count X:1598 Y:0 Z:0"
-        # 1. Cortamos en la palabra " Count " y nos quedamos solo con la primera mitad [0]
+        """Traduce la respuesta de Marlin y actualiza los Labels azules de la UI"""
         texto_limpio = texto.split(" Count ")[0] 
-        
-        # 2. Ahora sí separamos por espacios. Queda: ["X:180.00", "Y:0.00", "Z:0.00", "E:0.00"]
         partes = texto_limpio.split()
         
         for parte in partes:
             if parte.startswith("X:"):
-                grados = float(parte.replace("X:", ""))# / 2 
-                self.labels_posicion["X"].setText(f"Pos: {grados:.1f}°")
-                
+                grados = float(parte.replace("X:", ""))
+                self.ui.labels_posicion["X"].setText(f"Pos: {grados:.1f}°")
             elif parte.startswith("Y:"):
-                grados = float(parte.replace("Y:", ""))#  / 2
-                self.labels_posicion["Y"].setText(f"Pos: {grados:.1f}°")
-                
+                grados = float(parte.replace("Y:", ""))
+                self.ui.labels_posicion["Y"].setText(f"Pos: {grados:.1f}°")
             elif parte.startswith("Z:"):
-                grados = float(parte.replace("Z:", ""))#  / 2
-                self.labels_posicion["Z"].setText(f"Pos: {grados:.1f}°")
-                
+                grados = float(parte.replace("Z:", ""))
+                self.ui.labels_posicion["Z"].setText(f"Pos: {grados:.1f}°")
             elif parte.startswith("E:"):
-                grados = float(parte.replace("E:", ""))#  / 2
-                self.labels_posicion["T"].setText(f"Pos: {grados:.1f}°")
-
-    def fijar_cero_y_limites(self):
-        if self.serial_port and self.serial_port.is_open:
-            self.serial_port.write("M211 S0\n".encode('utf-8'))
-            self.serial_port.write("G92 X0 Y0 Z0 E0\n".encode('utf-8'))
-            self.solicitar_posicion() # Actualizar UI a cero
-
-    def cambiar_velocidad(self):
-        valor = self.slider_velocidad.value()
-        self.lbl_velocidad_val.setText(f"{valor}%")
-        if self.serial_port and self.serial_port.is_open:
-            self.serial_port.write(f"M220 S{valor}\n".encode('utf-8'))
-
-    def detener_servo(self):
-        if self.serial_port and self.serial_port.is_open:
-            self.serial_port.write("M280 P0 S-1\n".encode('utf-8'))
+                grados = float(parte.replace("E:", ""))
+                self.ui.labels_posicion["T"].setText(f"Pos: {grados:.1f}°")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    ventana = BrazoRoboticoGUI()
+    ventana = ControladorPrincipal()
     ventana.show()
     sys.exit(app.exec())
