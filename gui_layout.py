@@ -5,7 +5,6 @@ from PyQt6.QtCore import Qt
 class InterfazBrazoUI(QWidget):
     def __init__(self):
         super().__init__()
-        # Diccionarios para almacenar referencias a los elementos visuales
         self.inputs = {}
         self.botones_mover = {}
         self.labels_posicion = {}
@@ -33,30 +32,53 @@ class InterfazBrazoUI(QWidget):
             ("Hombro (X)", "X", "90"),
             ("Codo (Y)", "Y", "90"),
             ("Muñeca 1 (E)", "E", "90"),
-            ("Muñeca 2 (Z)", "Z", "90"),
-            ("Garra (Servo)", "Servo", "180")
+            ("Muñeca 2 (Z)", "Z", "90")
         ]
         for nombre, eje_id, val_defecto in ejes:
             layout_principal.addLayout(self.crear_fila_motor(nombre, eje_id, val_defecto))
             
-        # 3. Slider de Velocidad
-        layout_velocidad = QHBoxLayout()
-        layout_velocidad.addWidget(QLabel("Velocidad Global:"))
+        # --- NUEVO: 3. Panel de Control Dedicado para la Garra ---
+        layout_principal.addWidget(QLabel("-----------------------------------------------------"))
+        layout_principal.addWidget(QLabel("Control Garra (Servo Continuo):"))
         
+        layout_vel_garra = QHBoxLayout()
+        layout_vel_garra.addWidget(QLabel("Velocidad de Cierre/Apertura:"))
+        self.slider_vel_garra = QSlider(Qt.Orientation.Horizontal)
+        self.slider_vel_garra.setRange(10, 100) # De 10% a 100% de velocidad
+        self.slider_vel_garra.setValue(100)
+        self.lbl_vel_garra_val = QLabel("100%")
+        
+        layout_vel_garra.addWidget(self.slider_vel_garra)
+        layout_vel_garra.addWidget(self.lbl_vel_garra_val)
+        layout_principal.addLayout(layout_vel_garra)
+        
+        layout_botones_garra = QHBoxLayout()
+        self.btn_abrir_garra = QPushButton("Abrir Garra")
+        self.btn_abrir_garra.setStyleSheet("background-color: #FF9800; color: white; font-weight: bold;")
+        self.btn_cerrar_garra = QPushButton("Cerrar Garra")
+        self.btn_cerrar_garra.setStyleSheet("background-color: #2196F3; color: white; font-weight: bold;")
+        
+        layout_botones_garra.addWidget(self.btn_abrir_garra)
+        layout_botones_garra.addWidget(self.btn_cerrar_garra)
+        layout_principal.addLayout(layout_botones_garra)
+        
+        layout_principal.addWidget(QLabel("-----------------------------------------------------"))
+        
+        # 4. Slider de Velocidad Global de los ejes
+        layout_velocidad = QHBoxLayout()
+        layout_velocidad.addWidget(QLabel("Velocidad Movimientos:"))
         self.slider_velocidad = QSlider(Qt.Orientation.Horizontal)
         self.slider_velocidad.setRange(10, 100) 
         self.slider_velocidad.setValue(100) 
-        
         self.lbl_velocidad_val = QLabel("100%")
-        self.btn_leer_pos = QPushButton("Consultar Posición (M114)")
-        self.btn_leer_pos.setStyleSheet("background-color: #2196F3; color: white; font-weight: bold;")
+        self.btn_leer_pos = QPushButton("Consultar Posición")
         
         layout_velocidad.addWidget(self.slider_velocidad)
         layout_velocidad.addWidget(self.lbl_velocidad_val)
         layout_velocidad.addWidget(self.btn_leer_pos)
         layout_principal.addLayout(layout_velocidad)
         
-        # 4. Botones del Sistema
+        # 5. Botones del Sistema
         layout_sistema = QHBoxLayout()
         self.btn_fijar_cero = QPushButton("Fijar Cero (Quitar Límites)")
         self.btn_fijar_cero.setStyleSheet("background-color: #4CAF50; color: white; font-weight: bold; padding: 5px;")
@@ -79,7 +101,7 @@ class InterfazBrazoUI(QWidget):
         self.inputs[eje_id] = input_val 
         
         btn_mover = QPushButton(f"Mover {eje_id}")
-        self.botones_mover[eje_id] = btn_mover # Guardamos referencia del botón
+        self.botones_mover[eje_id] = btn_mover 
         
         lbl_pos = QLabel("Pos: 0.0°")
         lbl_pos.setStyleSheet("color: blue; font-weight: bold;")
