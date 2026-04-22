@@ -1,221 +1,75 @@
 {
-  "guardado_en": "2026-04-21T21:04:09.892756",
+  "guardado_en": "2026-04-21T21:41:03.072944",
   "movimientos": [
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "abrir",
+      "pwm": 0,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "cerrar",
+      "pwm": 180,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "abrir",
+      "pwm": 0,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "abrir",
+      "pwm": 0,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "cerrar",
+      "pwm": 180,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "abrir",
+      "pwm": 0,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "cerrar",
+      "pwm": 180,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "abrir",
+      "pwm": 0,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
+      "tipo": "servo_timed",
+      "accion": "cerrar",
+      "pwm": 180,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     },
     {
-      "eje": "Y",
-      "grados": -10.0
-    },
-    {
-      "eje": "Y",
-      "grados": -10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "E",
-      "grados": 20.0
-    },
-    {
-      "eje": "E",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": 20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "Y",
-      "grados": -20.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
-    },
-    {
-      "eje": "X",
-      "grados": 10.0
+      "tipo": "servo_timed",
+      "accion": "abrir",
+      "pwm": 0,
+      "duracion_ms": 3000,
+      "velocidad_pct": 100
     }
   ]
 }

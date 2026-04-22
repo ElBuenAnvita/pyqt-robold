@@ -25,7 +25,7 @@ class ControladorPrincipal(QMainWindow):
 
         self.timer_garra = QTimer()
         self.timer_garra.setSingleShot(True)
-        self.timer_garra.timeout.connect(self.robot.detener_servo)
+        self.timer_garra.timeout.connect(self.finalizar_garra_manual)
 
         self.base_dir = Path(__file__).resolve().parent
         self.archivo_log = self.base_dir / "registro_brazo.log"
@@ -116,18 +116,22 @@ class ControladorPrincipal(QMainWindow):
         self.agregar_log("Solicitando coordenadas actuales (M114)...")
 
     def fijar_cero(self):
-        self.robot.fijar_cero_y_limites()
-        self.agregar_log("Límites desactivados (M211 S0).")
-        self.agregar_log("Coordenadas fijadas en cero (G92 X0 Y0 Z0 E0).")
+        if self.robot.fijar_cero_y_limites():
+            self.agregar_log("Límites desactivados (M211 S0).")
+            self.agregar_log("Coordenadas fijadas en cero (G92 X0 Y0 Z0 E0).")
+        else:
+            self.agregar_log("Error: Robot no conectado.")
 
     def detener_servo(self):
-        self.robot.detener_servo()
-        self.agregar_log("Servo detenido (M280 P0 S-1).")
+        if self.robot.detener_servo():
+            self.agregar_log("Servo detenido (M280 P0 S-1).")
+        else:
+            self.agregar_log("Error: Robot no conectado.")
 
     def centro_izquierda(self):
         if self.robot.is_conectado():
             self.agregar_log("Iniciando rutina Centro → Izquierda (ida y vuelta).")
-            self.robot.mover_centro_izquierda()
+            self.robot.mover_centro_izquierda(log_callback=self.agregar_log)
             self.agregar_log("Rutina Centro → Izquierda finalizada.")
         else:
             self.agregar_log("Error: Robot no conectado.")
@@ -135,24 +139,55 @@ class ControladorPrincipal(QMainWindow):
     def base_izquierda(self):
         if self.robot.is_conectado():
             self.agregar_log("Iniciando rutina Base → Izquierda (ida y vuelta).")
-            self.robot.mover_base_izquierda()
+            self.robot.mover_base_izquierda(log_callback=self.agregar_log)
             self.agregar_log("Rutina Base → Izquierda finalizada.")
         else:
             self.agregar_log("Error: Robot no conectado.")
 
+    def crear_movimiento_servo(self, accion):
+        velocidad_pct = int(self.ui.slider_vel_garra.value())
+        delta = int(velocidad_pct * 0.9)
+
+        if accion == "abrir":
+            pwm = int(90 - delta)
+        else:
+            pwm = int(90 + delta)
+
+        return {
+            "tipo": "servo_timed",
+            "accion": accion,
+            "pwm": pwm,
+            "duracion_ms": 3000,
+            "velocidad_pct": velocidad_pct,
+        }
+
+    def ejecutar_movimiento_servo_manual(self, accion):
+        mov = self.crear_movimiento_servo(accion)
+        if not self.robot.is_conectado():
+            self.agregar_log("Error: Robot no conectado.")
+            return
+
+        ok = self.robot.mover_eje("Servo", mov["pwm"])
+        if not ok:
+            self.agregar_log("Error: No se pudo mover la garra.")
+            return
+
+        self.movimientos_actuales.append(dict(mov))
+        self.timer_garra.stop()
+        self.timer_garra.start(mov["duracion_ms"])
+        self.agregar_log(
+            f"Garra {accion}. PWM enviado: {mov['pwm']}. Movimiento guardado para rutina."
+        )
+
     def abrir_garra(self):
-        velocidad_pct = self.ui.slider_vel_garra.value()
-        valor_pwm = int(90 - (velocidad_pct * 0.9))
-        self.robot.mover_eje("Servo", valor_pwm)
-        self.timer_garra.start(3000)
-        self.agregar_log(f"Garra abriendo. PWM enviado: {valor_pwm}.")
+        self.ejecutar_movimiento_servo_manual("abrir")
 
     def cerrar_garra(self):
-        velocidad_pct = self.ui.slider_vel_garra.value()
-        valor_pwm = int(90 + (velocidad_pct * 0.9))
-        self.robot.mover_eje("Servo", valor_pwm)
-        self.timer_garra.start(3000)
-        self.agregar_log(f"Garra cerrando. PWM enviado: {valor_pwm}.")
+        self.ejecutar_movimiento_servo_manual("cerrar")
+
+    def finalizar_garra_manual(self):
+        self.robot.detener_servo()
+        self.agregar_log("Servo detenido automáticamente al finalizar el tiempo manual.")
 
     def ejecutar_movimiento(self, eje_id):
         try:
@@ -167,7 +202,8 @@ class ControladorPrincipal(QMainWindow):
             self.agregar_log("Error: Robot no conectado.")
             return
 
-        self.movimientos_actuales.append({"eje": eje_id, "grados": grados})
+        movimiento = {"tipo": "eje", "eje": eje_id, "grados": grados}
+        self.movimientos_actuales.append(movimiento)
         signo = "+" if grados > 0 else ""
         self.agregar_log(f"Movimiento manual guardado: {eje_id} = {signo}{grados}°.")
 
@@ -183,17 +219,23 @@ class ControladorPrincipal(QMainWindow):
             invertir=True,
         )
         if exito:
-            self.agregar_log("Regreso manual completado. El brazo volvió a su posición base.")
+            self.agregar_log("Regreso manual completado. El brazo volvió a la posición base.")
             self.movimientos_actuales.clear()
 
     def quemar_rutina(self):
         if not self.movimientos_actuales:
-            self.agregar_log("No hay movimientos manuales para quemar.")
+            self.agregar_log("No hay movimientos manuales ni de garra para quemar.")
             return
 
         self.rutina_quemada = [dict(mov) for mov in self.movimientos_actuales]
         self.guardar_rutina_quemada()
-        self.agregar_log(f"Rutina quemada con {len(self.rutina_quemada)} movimientos.")
+
+        total_servos = sum(1 for mov in self.rutina_quemada if mov.get("tipo") == "servo_timed")
+        total_ejes = sum(1 for mov in self.rutina_quemada if mov.get("tipo", "eje") == "eje")
+        self.agregar_log(
+            f"Rutina quemada con {len(self.rutina_quemada)} movimientos "
+            f"({total_ejes} de ejes, {total_servos} de garra)."
+        )
 
     def ejecutar_rutina_quemada(self):
         if not self.rutina_quemada:
@@ -207,6 +249,7 @@ class ControladorPrincipal(QMainWindow):
             invertir=False,
         )
         if not exito_ida:
+            self.agregar_log("La rutina se interrumpió durante la ida.")
             return
 
         self.agregar_log("Ejecutando rutina quemada: regreso invertido...")
@@ -245,9 +288,8 @@ class ControladorPrincipal(QMainWindow):
 
     def rutina_lectura(self):
         respuesta = self.robot.leer_datos()
-        if respuesta:
-            if "X:" in respuesta and "Count" in respuesta:
-                self.procesar_coordenadas(respuesta)
+        if respuesta and "X:" in respuesta and "Count" in respuesta:
+            self.procesar_coordenadas(respuesta)
 
     def procesar_coordenadas(self, texto):
         texto_limpio = texto.split(" Count ")[0]
