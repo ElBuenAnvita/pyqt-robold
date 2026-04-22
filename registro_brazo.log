@@ -1,0 +1,590 @@
+[16:20:25] --- Sistema de Control Listo ---
+[16:20:25] Por favor, conecte el puerto de la TinyBee.
+[16:21:57] --- Sistema de Control Listo ---
+[16:21:57] Por favor, conecte el puerto de la TinyBee.
+[16:22:04] Conectado correctamente a la TinyBee en COM4.
+[16:22:08] Movimiento manual guardado: X = +90.0°.
+[16:22:15] Movimiento manual guardado: X = +90.0°.
+[16:22:19] Movimiento manual guardado: T = +90.0°.
+[16:22:23] Movimiento manual guardado: T = +90.0°.
+[16:22:38] Movimiento manual guardado: T = -90.0°.
+[16:22:38] Movimiento manual guardado: T = -90.0°.
+[16:22:51] Movimiento manual guardado: T = +90.0°.
+[16:23:02] Movimiento manual guardado: X = +90.0°.
+[16:23:07] Movimiento manual guardado: X = +90.0°.
+[16:23:16] Invirtiendo movimientos manuales para regresar a la posición inicial...
+[16:23:16] Secuencia paso 1: X = -90.0°
+[16:23:16] Secuencia paso 2: X = -90.0°
+[16:23:16] Secuencia paso 3: T = -90.0°
+[16:23:17] Secuencia paso 4: T = +90.0°
+[16:23:17] Secuencia paso 5: T = +90.0°
+[16:23:17] Secuencia paso 6: T = -90.0°
+[16:23:17] Secuencia paso 7: T = -90.0°
+[16:23:17] Secuencia paso 8: X = -90.0°
+[16:23:17] Secuencia paso 9: X = -90.0°
+[16:23:17] Regreso manual completado. El brazo volvió a su posición base.
+[16:23:56] Movimientos manuales y rutina quemada borrados.
+[16:24:39] Movimiento manual guardado: T = +90.0°.
+[16:24:50] Movimiento manual guardado: T = -90.0°.
+[16:24:57] Movimiento manual guardado: X = +90.0°.
+[16:25:04] Movimiento manual guardado: X = +90.0°.
+[16:25:07] Movimiento manual guardado: X = +90.0°.
+[16:25:10] Movimiento manual guardado: X = +90.0°.
+[16:25:24] Invirtiendo movimientos manuales para regresar a la posición inicial...
+[16:25:24] Secuencia paso 1: X = -90.0°
+[16:25:24] Secuencia paso 2: X = -90.0°
+[16:25:25] Secuencia paso 3: X = -90.0°
+[16:25:25] Secuencia paso 4: X = -90.0°
+[16:25:25] Secuencia paso 5: T = +90.0°
+[16:25:25] Secuencia paso 6: T = -90.0°
+[16:25:25] Regreso manual completado. El brazo volvió a su posición base.
+[16:26:13] No existe una rutina quemada para ejecutar.
+[16:26:20] No hay movimientos manuales para quemar.
+[16:26:25] Movimiento manual guardado: X = +90.0°.
+[16:26:27] Movimiento manual guardado: X = +90.0°.
+[16:26:29] Movimiento manual guardado: X = +90.0°.
+[16:26:31] Movimiento manual guardado: X = +90.0°.
+[16:26:35] Movimiento manual guardado: T = -90.0°.
+[16:26:41] Movimiento manual guardado: T = -90.0°.
+[16:26:48] Rutina quemada con 6 movimientos.
+[16:26:51] Invirtiendo movimientos manuales para regresar a la posición inicial...
+[16:26:51] Secuencia paso 1: T = +90.0°
+[16:26:51] Secuencia paso 2: T = +90.0°
+[16:26:51] Secuencia paso 3: X = -90.0°
+[16:26:52] Secuencia paso 4: X = -90.0°
+[16:26:52] Secuencia paso 5: X = -90.0°
+[16:26:52] Secuencia paso 6: X = -90.0°
+[16:26:52] Regreso manual completado. El brazo volvió a su posición base.
+[20:35:56] --- Sistema de Control Listo ---
+[20:35:56] Por favor, conecte el puerto de la TinyBee.
+[20:36:47] Conectado correctamente a la TinyBee en COM4.
+[20:38:51] Movimiento manual guardado: Y = +10.0°.
+[20:38:52] Movimiento manual guardado: Y = +10.0°.
+[20:38:54] Movimiento manual guardado: Y = +10.0°.
+[20:38:56] Movimiento manual guardado: Y = +10.0°.
+[20:38:57] Movimiento manual guardado: Y = +10.0°.
+[20:38:58] Movimiento manual guardado: Y = +10.0°.
+[20:38:59] Movimiento manual guardado: Y = +10.0°.
+[20:39:00] Movimiento manual guardado: Y = +10.0°.
+[20:39:01] Movimiento manual guardado: Y = +10.0°.
+[20:39:02] Movimiento manual guardado: Y = +10.0°.
+[20:39:03] Movimiento manual guardado: Y = +10.0°.
+[20:39:13] Movimiento manual guardado: Y = +20.0°.
+[20:39:14] Movimiento manual guardado: Y = +20.0°.
+[20:39:15] Movimiento manual guardado: Y = +20.0°.
+[20:39:16] Movimiento manual guardado: Y = +20.0°.
+[20:39:18] Movimiento manual guardado: Y = +20.0°.
+[20:39:27] Movimiento manual guardado: Z = +30.0°.
+[20:39:39] Movimiento manual guardado: E = +40.0°.
+[20:39:45] Movimiento manual guardado: E = -80.0°.
+[20:39:53] Movimientos manuales y rutina quemada borrados.
+[20:40:12] Movimiento manual guardado: X = +10.0°.
+[20:40:17] Movimiento manual guardado: X = +10.0°.
+[20:40:18] Movimiento manual guardado: X = +10.0°.
+[20:40:20] Movimiento manual guardado: X = +10.0°.
+[20:40:21] Movimiento manual guardado: X = +10.0°.
+[20:40:22] Movimiento manual guardado: X = +10.0°.
+[20:40:23] Movimiento manual guardado: X = +10.0°.
+[20:40:26] Movimiento manual guardado: Y = +20.0°.
+[20:40:27] Movimiento manual guardado: Y = +20.0°.
+[20:40:28] Movimiento manual guardado: Y = +20.0°.
+[20:40:29] Movimiento manual guardado: Y = +20.0°.
+[20:40:31] Movimiento manual guardado: Y = +20.0°.
+[20:40:32] Movimiento manual guardado: Y = +20.0°.
+[20:40:33] Movimiento manual guardado: Y = +20.0°.
+[20:40:37] Movimiento manual guardado: Y = +20.0°.
+[20:40:38] Movimiento manual guardado: Y = +20.0°.
+[20:40:39] Movimiento manual guardado: Y = +20.0°.
+[20:40:52] Movimiento manual guardado: Y = -20.0°.
+[20:40:53] Movimiento manual guardado: Y = -20.0°.
+[20:40:54] Movimiento manual guardado: Y = -20.0°.
+[20:40:55] Movimiento manual guardado: Y = -20.0°.
+[20:40:56] Movimiento manual guardado: Y = -20.0°.
+[20:40:57] Movimiento manual guardado: Y = -20.0°.
+[20:40:58] Movimiento manual guardado: Y = -20.0°.
+[20:40:59] Movimiento manual guardado: Y = -20.0°.
+[20:41:00] Movimiento manual guardado: Y = -20.0°.
+[20:41:02] Movimiento manual guardado: Y = -20.0°.
+[20:41:03] Movimiento manual guardado: Y = -20.0°.
+[20:41:07] Movimiento manual guardado: X = +10.0°.
+[20:41:08] Movimiento manual guardado: X = +10.0°.
+[20:41:10] Movimiento manual guardado: X = +10.0°.
+[20:41:11] Movimiento manual guardado: X = +10.0°.
+[20:41:13] Movimiento manual guardado: X = +10.0°.
+[20:41:15] Movimiento manual guardado: Y = -20.0°.
+[20:41:16] Movimiento manual guardado: X = +10.0°.
+[20:41:17] Movimiento manual guardado: Y = -20.0°.
+[20:41:20] Movimiento manual guardado: X = +10.0°.
+[20:41:21] Movimiento manual guardado: Y = -20.0°.
+[20:41:23] Movimiento manual guardado: X = +10.0°.
+[20:41:24] Movimiento manual guardado: X = +10.0°.
+[20:41:25] Movimiento manual guardado: X = +10.0°.
+[20:41:26] Movimiento manual guardado: X = +10.0°.
+[20:41:28] Movimiento manual guardado: X = +10.0°.
+[20:41:29] Movimiento manual guardado: X = +10.0°.
+[20:41:30] Movimiento manual guardado: Y = -20.0°.
+[20:41:32] Movimiento manual guardado: Y = -20.0°.
+[20:41:33] Movimiento manual guardado: X = +10.0°.
+[20:41:35] Movimiento manual guardado: X = +10.0°.
+[20:41:36] Movimiento manual guardado: X = +10.0°.
+[20:41:37] Movimiento manual guardado: X = +10.0°.
+[20:41:39] Movimiento manual guardado: Y = -20.0°.
+[20:41:40] Movimiento manual guardado: Y = -20.0°.
+[20:41:42] Movimiento manual guardado: Y = -20.0°.
+[20:41:43] Movimiento manual guardado: Y = -20.0°.
+[20:41:52] Movimiento manual guardado: E = +40.0°.
+[20:42:24] Invirtiendo movimientos manuales para regresar a la posición inicial...
+[20:42:24] Secuencia paso 1: E = -40.0°
+[20:42:24] Secuencia paso 2: Y = +20.0°
+[20:42:24] Secuencia paso 3: Y = +20.0°
+[20:42:24] Secuencia paso 4: Y = +20.0°
+[20:42:24] Secuencia paso 5: Y = +20.0°
+[20:42:24] Secuencia paso 6: X = -10.0°
+[20:42:25] Secuencia paso 7: X = -10.0°
+[20:42:25] Secuencia paso 8: X = -10.0°
+[20:42:25] Secuencia paso 9: X = -10.0°
+[20:42:25] Secuencia paso 10: Y = +20.0°
+[20:42:25] Secuencia paso 11: Y = +20.0°
+[20:42:25] Secuencia paso 12: X = -10.0°
+[20:42:26] Secuencia paso 13: X = -10.0°
+[20:42:26] Secuencia paso 14: X = -10.0°
+[20:42:26] Secuencia paso 15: X = -10.0°
+[20:42:26] Secuencia paso 16: X = -10.0°
+[20:42:26] Secuencia paso 17: X = -10.0°
+[20:42:26] Secuencia paso 18: Y = +20.0°
+[20:42:27] Secuencia paso 19: X = -10.0°
+[20:42:27] Secuencia paso 20: Y = +20.0°
+[20:42:27] Secuencia paso 21: X = -10.0°
+[20:42:27] Secuencia paso 22: Y = +20.0°
+[20:42:27] Secuencia paso 23: X = -10.0°
+[20:42:27] Secuencia paso 24: X = -10.0°
+[20:42:28] Secuencia paso 25: X = -10.0°
+[20:42:28] Secuencia paso 26: X = -10.0°
+[20:42:28] Secuencia paso 27: X = -10.0°
+[20:42:28] Secuencia paso 28: Y = +20.0°
+[20:42:28] Secuencia paso 29: Y = +20.0°
+[20:42:29] Secuencia paso 30: Y = +20.0°
+[20:42:29] Secuencia paso 31: Y = +20.0°
+[20:42:29] Secuencia paso 32: Y = +20.0°
+[20:42:29] Secuencia paso 33: Y = +20.0°
+[20:42:29] Secuencia paso 34: Y = +20.0°
+[20:42:29] Secuencia paso 35: Y = +20.0°
+[20:42:30] Secuencia paso 36: Y = +20.0°
+[20:42:30] Secuencia paso 37: Y = +20.0°
+[20:42:30] Secuencia paso 38: Y = +20.0°
+[20:42:30] Secuencia paso 39: Y = -20.0°
+[20:42:30] Secuencia paso 40: Y = -20.0°
+[20:42:30] Secuencia paso 41: Y = -20.0°
+[20:42:30] Secuencia paso 42: Y = -20.0°
+[20:42:31] Secuencia paso 43: Y = -20.0°
+[20:42:31] Secuencia paso 44: Y = -20.0°
+[20:42:31] Secuencia paso 45: Y = -20.0°
+[20:42:31] Secuencia paso 46: Y = -20.0°
+[20:42:31] Secuencia paso 47: Y = -20.0°
+[20:42:31] Secuencia paso 48: Y = -20.0°
+[20:42:32] Secuencia paso 49: X = -10.0°
+[20:42:32] Secuencia paso 50: X = -10.0°
+[20:42:32] Secuencia paso 51: X = -10.0°
+[20:42:32] Secuencia paso 52: X = -10.0°
+[20:42:32] Secuencia paso 53: X = -10.0°
+[20:42:32] Secuencia paso 54: X = -10.0°
+[20:42:33] Secuencia paso 55: X = -10.0°
+[20:42:33] Regreso manual completado. El brazo volvió a su posición base.
+[20:43:02] No hay movimientos manuales para quemar.
+[20:44:17] Movimientos manuales y rutina quemada borrados.
+[20:44:26] Movimiento manual guardado: Y = -20.0°.
+[20:44:42] Movimiento manual guardado: X = +10.0°.
+[20:44:45] Movimiento manual guardado: X = +10.0°.
+[20:44:47] Movimiento manual guardado: Y = -20.0°.
+[20:44:50] Movimiento manual guardado: X = +10.0°.
+[20:44:52] Movimiento manual guardado: Y = -20.0°.
+[20:44:53] Movimiento manual guardado: Y = -20.0°.
+[20:44:56] Movimiento manual guardado: X = +10.0°.
+[20:44:58] Movimiento manual guardado: X = +10.0°.
+[20:45:01] Movimiento manual guardado: Y = -20.0°.
+[20:45:02] Movimiento manual guardado: X = +10.0°.
+[20:45:04] Movimiento manual guardado: X = +10.0°.
+[20:45:05] Movimiento manual guardado: X = +10.0°.
+[20:45:06] Movimiento manual guardado: X = +10.0°.
+[20:45:07] Movimiento manual guardado: X = +10.0°.
+[20:45:08] Movimiento manual guardado: X = +10.0°.
+[20:45:09] Movimiento manual guardado: X = +10.0°.
+[20:45:11] Movimiento manual guardado: Y = -20.0°.
+[20:45:12] Movimiento manual guardado: Y = -20.0°.
+[20:45:13] Movimiento manual guardado: Y = -20.0°.
+[20:45:15] Movimiento manual guardado: X = +10.0°.
+[20:45:16] Movimiento manual guardado: X = +10.0°.
+[20:45:17] Movimiento manual guardado: X = +10.0°.
+[20:45:18] Movimiento manual guardado: X = +10.0°.
+[20:45:19] Movimiento manual guardado: X = +10.0°.
+[20:45:21] Movimiento manual guardado: X = +10.0°.
+[20:45:23] Movimiento manual guardado: Y = -20.0°.
+[20:45:24] Movimiento manual guardado: Y = -20.0°.
+[20:45:33] Movimiento manual guardado: E = -40.0°.
+[20:45:38] Movimiento manual guardado: E = +80.0°.
+[20:45:46] Rutina quemada con 30 movimientos.
+[20:46:03] Invirtiendo movimientos manuales para regresar a la posición inicial...
+[20:46:03] Secuencia paso 1: E = -80.0°
+[20:46:04] Secuencia paso 2: E = +40.0°
+[20:46:04] Secuencia paso 3: Y = +20.0°
+[20:46:04] Secuencia paso 4: Y = +20.0°
+[20:46:04] Secuencia paso 5: X = -10.0°
+[20:46:04] Secuencia paso 6: X = -10.0°
+[20:46:04] Secuencia paso 7: X = -10.0°
+[20:46:05] Secuencia paso 8: X = -10.0°
+[20:46:05] Secuencia paso 9: X = -10.0°
+[20:46:05] Secuencia paso 10: X = -10.0°
+[20:46:05] Secuencia paso 11: Y = +20.0°
+[20:46:05] Secuencia paso 12: Y = +20.0°
+[20:46:05] Secuencia paso 13: Y = +20.0°
+[20:46:06] Secuencia paso 14: X = -10.0°
+[20:46:06] Secuencia paso 15: X = -10.0°
+[20:46:06] Secuencia paso 16: X = -10.0°
+[20:46:06] Secuencia paso 17: X = -10.0°
+[20:46:06] Secuencia paso 18: X = -10.0°
+[20:46:06] Secuencia paso 19: X = -10.0°
+[20:46:07] Secuencia paso 20: X = -10.0°
+[20:46:07] Secuencia paso 21: Y = +20.0°
+[20:46:07] Secuencia paso 22: X = -10.0°
+[20:46:07] Secuencia paso 23: X = -10.0°
+[20:46:07] Secuencia paso 24: Y = +20.0°
+[20:46:07] Secuencia paso 25: Y = +20.0°
+[20:46:08] Secuencia paso 26: X = -10.0°
+[20:46:08] Secuencia paso 27: Y = +20.0°
+[20:46:08] Secuencia paso 28: X = -10.0°
+[20:46:08] Secuencia paso 29: X = -10.0°
+[20:46:08] Secuencia paso 30: Y = +20.0°
+[20:46:08] Regreso manual completado. El brazo volvió a su posición base.
+[20:46:39] Ejecutando rutina quemada: ida...
+[20:46:39] Secuencia paso 1: Y = -20.0°
+[20:46:39] Secuencia paso 2: X = +10.0°
+[20:46:39] Secuencia paso 3: X = +10.0°
+[20:46:40] Secuencia paso 4: Y = -20.0°
+[20:46:40] Secuencia paso 5: X = +10.0°
+[20:46:40] Secuencia paso 6: Y = -20.0°
+[20:46:40] Secuencia paso 7: Y = -20.0°
+[20:46:40] Secuencia paso 8: X = +10.0°
+[20:46:40] Secuencia paso 9: X = +10.0°
+[20:46:41] Secuencia paso 10: Y = -20.0°
+[20:46:41] Secuencia paso 11: X = +10.0°
+[20:46:41] Secuencia paso 12: X = +10.0°
+[20:46:41] Secuencia paso 13: X = +10.0°
+[20:46:41] Secuencia paso 14: X = +10.0°
+[20:46:41] Secuencia paso 15: X = +10.0°
+[20:46:42] Secuencia paso 16: X = +10.0°
+[20:46:42] Secuencia paso 17: X = +10.0°
+[20:46:42] Secuencia paso 18: Y = -20.0°
+[20:46:42] Secuencia paso 19: Y = -20.0°
+[20:46:42] Secuencia paso 20: Y = -20.0°
+[20:46:42] Secuencia paso 21: X = +10.0°
+[20:46:43] Secuencia paso 22: X = +10.0°
+[20:46:43] Secuencia paso 23: X = +10.0°
+[20:46:43] Secuencia paso 24: X = +10.0°
+[20:46:43] Secuencia paso 25: X = +10.0°
+[20:46:43] Secuencia paso 26: X = +10.0°
+[20:46:43] Secuencia paso 27: Y = -20.0°
+[20:46:44] Secuencia paso 28: Y = -20.0°
+[20:46:44] Secuencia paso 29: E = -40.0°
+[20:46:44] Secuencia paso 30: E = +80.0°
+[20:46:44] Ejecutando rutina quemada: regreso invertido...
+[20:46:44] Secuencia paso 1: E = -80.0°
+[20:46:44] Secuencia paso 2: E = +40.0°
+[20:46:44] Secuencia paso 3: Y = +20.0°
+[20:46:45] Secuencia paso 4: Y = +20.0°
+[20:46:45] Secuencia paso 5: X = -10.0°
+[20:46:45] Secuencia paso 6: X = -10.0°
+[20:46:45] Secuencia paso 7: X = -10.0°
+[20:46:45] Secuencia paso 8: X = -10.0°
+[20:46:45] Secuencia paso 9: X = -10.0°
+[20:46:46] Secuencia paso 10: X = -10.0°
+[20:46:46] Secuencia paso 11: Y = +20.0°
+[20:46:46] Secuencia paso 12: Y = +20.0°
+[20:46:46] Secuencia paso 13: Y = +20.0°
+[20:46:46] Secuencia paso 14: X = -10.0°
+[20:46:46] Secuencia paso 15: X = -10.0°
+[20:46:47] Secuencia paso 16: X = -10.0°
+[20:46:47] Secuencia paso 17: X = -10.0°
+[20:46:47] Secuencia paso 18: X = -10.0°
+[20:46:47] Secuencia paso 19: X = -10.0°
+[20:46:47] Secuencia paso 20: X = -10.0°
+[20:46:47] Secuencia paso 21: Y = +20.0°
+[20:46:48] Secuencia paso 22: X = -10.0°
+[20:46:48] Secuencia paso 23: X = -10.0°
+[20:46:48] Secuencia paso 24: Y = +20.0°
+[20:46:48] Secuencia paso 25: Y = +20.0°
+[20:46:48] Secuencia paso 26: X = -10.0°
+[20:46:48] Secuencia paso 27: Y = +20.0°
+[20:46:49] Secuencia paso 28: X = -10.0°
+[20:46:49] Secuencia paso 29: X = -10.0°
+[20:46:49] Secuencia paso 30: Y = +20.0°
+[20:46:49] Rutina quemada finalizada. El brazo volvió a la posición base.
+[20:58:36] Movimientos manuales y rutina quemada borrados.
+[20:59:34] Garra abriendo. PWM enviado: 0.
+[20:59:38] Garra abriendo. PWM enviado: 0.
+[20:59:41] Garra abriendo. PWM enviado: 0.
+[20:59:42] Garra cerrando. PWM enviado: 180.
+[20:59:44] Garra abriendo. PWM enviado: 0.
+[20:59:52] Garra cerrando. PWM enviado: 162.
+[21:00:12] Movimiento manual guardado: Y = -10.0°.
+[21:00:13] Movimiento manual guardado: Y = -10.0°.
+[21:00:14] Movimiento manual guardado: Y = -10.0°.
+[21:00:15] Movimiento manual guardado: Y = -10.0°.
+[21:00:16] Movimiento manual guardado: Y = -10.0°.
+[21:00:17] Movimiento manual guardado: Y = -10.0°.
+[21:00:18] Movimiento manual guardado: Y = -10.0°.
+[21:00:18] Movimiento manual guardado: Y = -10.0°.
+[21:00:19] Movimiento manual guardado: Y = -10.0°.
+[21:00:20] Movimiento manual guardado: Y = -10.0°.
+[21:00:22] Movimiento manual guardado: Y = -10.0°.
+[21:00:28] Movimiento manual guardado: X = +10.0°.
+[21:02:35] Movimiento manual guardado: Y = +20.0°.
+[21:02:36] Movimiento manual guardado: Y = +20.0°.
+[21:02:37] Movimiento manual guardado: Y = +20.0°.
+[21:02:38] Movimiento manual guardado: Y = +20.0°.
+[21:02:40] Movimiento manual guardado: Y = +20.0°.
+[21:02:41] Movimiento manual guardado: Y = +20.0°.
+[21:02:42] Movimiento manual guardado: Y = +20.0°.
+[21:02:45] Movimiento manual guardado: X = +10.0°.
+[21:02:48] Movimiento manual guardado: X = +10.0°.
+[21:02:49] Movimiento manual guardado: X = +10.0°.
+[21:02:50] Movimiento manual guardado: X = +10.0°.
+[21:02:51] Movimiento manual guardado: X = +10.0°.
+[21:02:52] Movimiento manual guardado: Y = +20.0°.
+[21:02:53] Movimiento manual guardado: Y = +20.0°.
+[21:03:01] Movimiento manual guardado: E = +20.0°.
+[21:03:05] Movimiento manual guardado: E = +20.0°.
+[21:03:08] Garra cerrando. PWM enviado: 162.
+[21:03:09] Garra abriendo. PWM enviado: 18.
+[21:03:15] Garra cerrando. PWM enviado: 162.
+[21:03:20] Movimiento manual guardado: Y = +20.0°.
+[21:03:22] Movimiento manual guardado: Y = +20.0°.
+[21:03:29] Movimiento manual guardado: Y = -20.0°.
+[21:03:30] Movimiento manual guardado: Y = -20.0°.
+[21:03:31] Movimiento manual guardado: Y = -20.0°.
+[21:03:32] Movimiento manual guardado: Y = -20.0°.
+[21:03:33] Movimiento manual guardado: Y = -20.0°.
+[21:03:34] Movimiento manual guardado: Y = -20.0°.
+[21:03:35] Movimiento manual guardado: Y = -20.0°.
+[21:03:36] Movimiento manual guardado: Y = -20.0°.
+[21:03:37] Movimiento manual guardado: Y = -20.0°.
+[21:03:38] Movimiento manual guardado: Y = -20.0°.
+[21:03:39] Movimiento manual guardado: X = +10.0°.
+[21:03:41] Movimiento manual guardado: X = +10.0°.
+[21:03:43] Movimiento manual guardado: X = +10.0°.
+[21:03:46] Movimiento manual guardado: X = +10.0°.
+[21:03:48] Movimiento manual guardado: X = +10.0°.
+[21:03:50] Movimiento manual guardado: X = +10.0°.
+[21:03:51] Movimiento manual guardado: Y = -20.0°.
+[21:03:52] Movimiento manual guardado: Y = -20.0°.
+[21:03:53] Movimiento manual guardado: Y = -20.0°.
+[21:03:58] Movimiento manual guardado: X = +10.0°.
+[21:03:59] Movimiento manual guardado: X = +10.0°.
+[21:04:00] Movimiento manual guardado: X = +10.0°.
+[21:04:01] Movimiento manual guardado: X = +10.0°.
+[21:04:03] Movimiento manual guardado: X = +10.0°.
+[21:04:09] Rutina quemada con 54 movimientos.
+[21:04:28] Invirtiendo movimientos manuales para regresar a la posición inicial...
+[21:04:28] Secuencia paso 1: X = -10.0°
+[21:04:28] Secuencia paso 2: X = -10.0°
+[21:04:28] Secuencia paso 3: X = -10.0°
+[21:04:28] Secuencia paso 4: X = -10.0°
+[21:04:29] Secuencia paso 5: X = -10.0°
+[21:04:29] Secuencia paso 6: Y = +20.0°
+[21:04:29] Secuencia paso 7: Y = +20.0°
+[21:04:29] Secuencia paso 8: Y = +20.0°
+[21:04:29] Secuencia paso 9: X = -10.0°
+[21:04:29] Secuencia paso 10: X = -10.0°
+[21:04:30] Secuencia paso 11: X = -10.0°
+[21:04:30] Secuencia paso 12: X = -10.0°
+[21:04:30] Secuencia paso 13: X = -10.0°
+[21:04:30] Secuencia paso 14: X = -10.0°
+[21:04:30] Secuencia paso 15: Y = +20.0°
+[21:04:30] Secuencia paso 16: Y = +20.0°
+[21:04:31] Secuencia paso 17: Y = +20.0°
+[21:04:31] Secuencia paso 18: Y = +20.0°
+[21:04:31] Secuencia paso 19: Y = +20.0°
+[21:04:31] Secuencia paso 20: Y = +20.0°
+[21:04:31] Secuencia paso 21: Y = +20.0°
+[21:04:31] Secuencia paso 22: Y = +20.0°
+[21:04:32] Secuencia paso 23: Y = +20.0°
+[21:04:32] Secuencia paso 24: Y = +20.0°
+[21:04:32] Secuencia paso 25: Y = -20.0°
+[21:04:32] Secuencia paso 26: Y = -20.0°
+[21:04:32] Secuencia paso 27: E = -20.0°
+[21:04:32] Secuencia paso 28: E = -20.0°
+[21:04:33] Secuencia paso 29: Y = -20.0°
+[21:04:33] Secuencia paso 30: Y = -20.0°
+[21:04:33] Secuencia paso 31: X = -10.0°
+[21:04:33] Secuencia paso 32: X = -10.0°
+[21:04:33] Secuencia paso 33: X = -10.0°
+[21:04:33] Secuencia paso 34: X = -10.0°
+[21:04:33] Secuencia paso 35: X = -10.0°
+[21:04:34] Secuencia paso 36: Y = -20.0°
+[21:04:34] Secuencia paso 37: Y = -20.0°
+[21:04:34] Secuencia paso 38: Y = -20.0°
+[21:04:34] Secuencia paso 39: Y = -20.0°
+[21:04:34] Secuencia paso 40: Y = -20.0°
+[21:04:34] Secuencia paso 41: Y = -20.0°
+[21:04:35] Secuencia paso 42: Y = -20.0°
+[21:04:35] Secuencia paso 43: X = -10.0°
+[21:04:35] Secuencia paso 44: Y = +10.0°
+[21:04:35] Secuencia paso 45: Y = +10.0°
+[21:04:35] Secuencia paso 46: Y = +10.0°
+[21:04:36] Secuencia paso 47: Y = +10.0°
+[21:04:36] Secuencia paso 48: Y = +10.0°
+[21:04:36] Secuencia paso 49: Y = +10.0°
+[21:04:36] Secuencia paso 50: Y = +10.0°
+[21:04:36] Secuencia paso 51: Y = +10.0°
+[21:04:36] Secuencia paso 52: Y = +10.0°
+[21:04:37] Secuencia paso 53: Y = +10.0°
+[21:04:37] Secuencia paso 54: Y = +10.0°
+[21:04:37] Regreso manual completado. El brazo volvió a su posición base.
+[21:04:37] No hay movimientos manuales para invertir.
+[21:04:37] No hay movimientos manuales para invertir.
+[21:05:04] Garra abriendo. PWM enviado: 18.
+[21:05:38] Ejecutando rutina quemada: ida...
+[21:05:38] Secuencia paso 1: Y = -10.0°
+[21:05:38] Secuencia paso 2: Y = -10.0°
+[21:05:38] Secuencia paso 3: Y = -10.0°
+[21:05:39] Secuencia paso 4: Y = -10.0°
+[21:05:39] Secuencia paso 5: Y = -10.0°
+[21:05:39] Secuencia paso 6: Y = -10.0°
+[21:05:39] Secuencia paso 7: Y = -10.0°
+[21:05:39] Secuencia paso 8: Y = -10.0°
+[21:05:39] Secuencia paso 9: Y = -10.0°
+[21:05:40] Secuencia paso 10: Y = -10.0°
+[21:05:40] Secuencia paso 11: Y = -10.0°
+[21:05:40] Secuencia paso 12: X = +10.0°
+[21:05:40] Secuencia paso 13: Y = +20.0°
+[21:05:40] Secuencia paso 14: Y = +20.0°
+[21:05:40] Secuencia paso 15: Y = +20.0°
+[21:05:41] Secuencia paso 16: Y = +20.0°
+[21:05:41] Secuencia paso 17: Y = +20.0°
+[21:05:41] Secuencia paso 18: Y = +20.0°
+[21:05:41] Secuencia paso 19: Y = +20.0°
+[21:05:41] Secuencia paso 20: X = +10.0°
+[21:05:41] Secuencia paso 21: X = +10.0°
+[21:05:42] Secuencia paso 22: X = +10.0°
+[21:05:42] Secuencia paso 23: X = +10.0°
+[21:05:42] Secuencia paso 24: X = +10.0°
+[21:05:42] Secuencia paso 25: Y = +20.0°
+[21:05:42] Secuencia paso 26: Y = +20.0°
+[21:05:42] Secuencia paso 27: E = +20.0°
+[21:05:43] Secuencia paso 28: E = +20.0°
+[21:05:43] Secuencia paso 29: Y = +20.0°
+[21:05:43] Secuencia paso 30: Y = +20.0°
+[21:05:43] Secuencia paso 31: Y = -20.0°
+[21:05:43] Secuencia paso 32: Y = -20.0°
+[21:05:43] Secuencia paso 33: Y = -20.0°
+[21:05:44] Secuencia paso 34: Y = -20.0°
+[21:05:44] Secuencia paso 35: Y = -20.0°
+[21:05:44] Secuencia paso 36: Y = -20.0°
+[21:05:44] Secuencia paso 37: Y = -20.0°
+[21:05:44] Secuencia paso 38: Y = -20.0°
+[21:05:44] Secuencia paso 39: Y = -20.0°
+[21:05:45] Secuencia paso 40: Y = -20.0°
+[21:05:45] Secuencia paso 41: X = +10.0°
+[21:05:45] Secuencia paso 42: X = +10.0°
+[21:05:45] Secuencia paso 43: X = +10.0°
+[21:05:45] Secuencia paso 44: X = +10.0°
+[21:05:45] Secuencia paso 45: X = +10.0°
+[21:05:46] Secuencia paso 46: X = +10.0°
+[21:05:46] Secuencia paso 47: Y = -20.0°
+[21:05:46] Secuencia paso 48: Y = -20.0°
+[21:05:46] Secuencia paso 49: Y = -20.0°
+[21:05:46] Secuencia paso 50: X = +10.0°
+[21:05:46] Secuencia paso 51: X = +10.0°
+[21:05:47] Secuencia paso 52: X = +10.0°
+[21:05:47] Secuencia paso 53: X = +10.0°
+[21:05:47] Secuencia paso 54: X = +10.0°
+[21:05:47] Ejecutando rutina quemada: regreso invertido...
+[21:05:47] Secuencia paso 1: X = -10.0°
+[21:05:47] Secuencia paso 2: X = -10.0°
+[21:05:47] Secuencia paso 3: X = -10.0°
+[21:05:48] Secuencia paso 4: X = -10.0°
+[21:05:48] Secuencia paso 5: X = -10.0°
+[21:05:48] Secuencia paso 6: Y = +20.0°
+[21:05:48] Secuencia paso 7: Y = +20.0°
+[21:05:48] Secuencia paso 8: Y = +20.0°
+[21:05:48] Secuencia paso 9: X = -10.0°
+[21:05:49] Secuencia paso 10: X = -10.0°
+[21:05:49] Secuencia paso 11: X = -10.0°
+[21:05:49] Secuencia paso 12: X = -10.0°
+[21:05:49] Secuencia paso 13: X = -10.0°
+[21:05:49] Secuencia paso 14: X = -10.0°
+[21:05:49] Secuencia paso 15: Y = +20.0°
+[21:05:50] Secuencia paso 16: Y = +20.0°
+[21:05:50] Secuencia paso 17: Y = +20.0°
+[21:05:50] Secuencia paso 18: Y = +20.0°
+[21:05:50] Secuencia paso 19: Y = +20.0°
+[21:05:50] Secuencia paso 20: Y = +20.0°
+[21:05:50] Secuencia paso 21: Y = +20.0°
+[21:05:51] Secuencia paso 22: Y = +20.0°
+[21:05:51] Secuencia paso 23: Y = +20.0°
+[21:05:51] Secuencia paso 24: Y = +20.0°
+[21:05:51] Secuencia paso 25: Y = -20.0°
+[21:05:51] Secuencia paso 26: Y = -20.0°
+[21:05:51] Secuencia paso 27: E = -20.0°
+[21:05:52] Secuencia paso 28: E = -20.0°
+[21:05:52] Secuencia paso 29: Y = -20.0°
+[21:05:52] Secuencia paso 30: Y = -20.0°
+[21:05:52] Secuencia paso 31: X = -10.0°
+[21:05:52] Secuencia paso 32: X = -10.0°
+[21:05:52] Secuencia paso 33: X = -10.0°
+[21:05:53] Secuencia paso 34: X = -10.0°
+[21:05:53] Secuencia paso 35: X = -10.0°
+[21:05:53] Secuencia paso 36: Y = -20.0°
+[21:05:53] Secuencia paso 37: Y = -20.0°
+[21:05:53] Secuencia paso 38: Y = -20.0°
+[21:05:53] Secuencia paso 39: Y = -20.0°
+[21:05:54] Secuencia paso 40: Y = -20.0°
+[21:05:54] Secuencia paso 41: Y = -20.0°
+[21:05:54] Secuencia paso 42: Y = -20.0°
+[21:05:54] Secuencia paso 43: X = -10.0°
+[21:05:54] Secuencia paso 44: Y = +10.0°
+[21:05:54] Secuencia paso 45: Y = +10.0°
+[21:05:55] Secuencia paso 46: Y = +10.0°
+[21:05:55] Secuencia paso 47: Y = +10.0°
+[21:05:55] Secuencia paso 48: Y = +10.0°
+[21:05:55] Secuencia paso 49: Y = +10.0°
+[21:05:55] Secuencia paso 50: Y = +10.0°
+[21:05:55] Secuencia paso 51: Y = +10.0°
+[21:05:56] Secuencia paso 52: Y = +10.0°
+[21:05:56] Secuencia paso 53: Y = +10.0°
+[21:05:56] Secuencia paso 54: Y = +10.0°
+[21:05:56] Rutina quemada finalizada. El brazo volvió a la posición base.
+[21:06:28] Garra cerrando. PWM enviado: 162.
+[21:06:30] Garra cerrando. PWM enviado: 162.
+[21:06:32] Garra cerrando. PWM enviado: 162.
+[21:06:33] Garra abriendo. PWM enviado: 18.
+[21:06:35] Garra abriendo. PWM enviado: 18.
+[21:06:37] Garra cerrando. PWM enviado: 162.
+[21:06:44] Garra cerrando. PWM enviado: 162.
+[21:06:46] Garra cerrando. PWM enviado: 180.
+[21:06:47] Garra cerrando. PWM enviado: 180.
+[21:06:47] Garra cerrando. PWM enviado: 180.
+[21:06:47] Garra cerrando. PWM enviado: 180.
+[21:06:49] Garra abriendo. PWM enviado: 0.
+[21:06:51] Garra abriendo. PWM enviado: 0.
+[21:06:52] Garra cerrando. PWM enviado: 180.
+[21:06:53] Garra abriendo. PWM enviado: 0.
+[21:06:53] Garra abriendo. PWM enviado: 0.
+[21:06:53] Garra abriendo. PWM enviado: 0.
+[21:06:54] Garra abriendo. PWM enviado: 0.
+[21:06:57] Desconectado.
+[21:17:49] --- Sistema de Control Listo ---
+[21:17:49] Por favor, conecte el puerto de la TinyBee.
+[21:18:10] --- Sistema de Control Listo ---
+[21:18:10] Por favor, conecte el puerto de la TinyBee.
+[21:18:15] Conectado correctamente a la TinyBee en COM4.
+[21:18:30] --- Sistema de Control Listo ---
+[21:18:30] Por favor, conecte el puerto de la TinyBee.
+[21:18:36] Conectado correctamente a la TinyBee en COM4.
+[21:20:04] --- Sistema de Control Listo ---
+[21:20:04] Por favor, conecte el puerto de la TinyBee.
+[21:20:11] Conectado correctamente a la TinyBee en COM4.
+[21:20:18] Garra abriendo. PWM enviado: 0.
+[21:20:22] Garra cerrando. PWM enviado: 180.
+[21:20:26] Garra abriendo. PWM enviado: 0.
+[21:20:28] Garra cerrando. PWM enviado: 180.
+[21:20:34] Ejecutando rutina quemada: ida...
